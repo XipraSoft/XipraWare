@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import Navbar from './components/navbar/navbar'
 import Footer from './components/footer/footer'
-import Landing from './pages/landing/landing'
+
+import Product from './pages/products/products'
 
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
     <>
       <div>
         <Navbar/>
-        <Landing/>
+        <Product/>
         <Footer/>
       </div>
     </>
