@@ -1,9 +1,11 @@
 import React from 'react'
+import './footer.css'
 
 const Footer = () => {
   return (
     
-      <div classNameName="footer">
+      
+        <div className="footer">
         <div className="container">
             <div className="row">
                 <div className="footer-col-1">
@@ -39,10 +41,11 @@ const Footer = () => {
                 </div>
             </div>
             <hr />
-            <p className="copyright">Copyright 2020 - Samwit Adhikary</p>
+            <p className="copyright">Copyright 2025 - XipraWare</p>
         </div>
     
     </div>
+    
   )
 }
 
