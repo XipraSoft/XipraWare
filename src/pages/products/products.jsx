@@ -1,15 +1,8 @@
 import React from "react";
 import "./products.css"; // Ensure this path matches your file structure
 
-const Product = () => {
-  const products = Array.from({ length: 12 }, (_, i) => ({
-    id: i + 1,
-    name: "Red Printed T-Shirt",
-    price: "$50.00",
-    image: `  product-${i + 1}.jpg`,
-    rating: 4,
-  }));
-
+const Product = ({products}) => {
+ 
   return (
     <div className="small-container">
       <div className="row row-2">
