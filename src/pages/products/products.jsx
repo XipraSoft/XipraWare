@@ -24,7 +24,7 @@ const Product = ({products}) => {
               <a href="product_details.html">
                 <img src={product.image} alt={`Product ${product.id}`} />
               </a>
-              <h4>{product.name}</h4>
+              <h4>{product.title}</h4>
               <div className="rating">
                 {[...Array(5)].map((_, i) => (
                   <i
@@ -35,7 +35,7 @@ const Product = ({products}) => {
                   />
                 ))}
               </div>
-              <p>{product.price}</p>
+              <p>${product.price}.00</p>
             </div>
           ))}
         </div>

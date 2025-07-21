@@ -1,25 +1,17 @@
-import { useState } from 'react'
 import Navbar from './components/navbar/navbar'
 import Footer from './components/footer/footer'
-import Landing from './pages/landing/landing';
+import Product from './pages/products/products';
+import { products } from './helpers.js/cardsdata';
 
 
 function App() {
-   const [products] = useState(
-  Array.from({ length: 12 }, (_, i) => ({
-    id: i + 1,
-    name: "Red Printed T-Shirt",
-    price: "$50.00",
-    image: `product-${i + 1}.jpg`,
-    rating: 4,
-  }))
-);
+ 
 
   return (
     <>
       <div>
         <Navbar/>
-        <Landing products={products}/>
+        <Product products={products}/>
         <Footer/>
       </div>
     </>
