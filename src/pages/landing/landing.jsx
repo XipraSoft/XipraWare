@@ -1,7 +1,10 @@
 import React from 'react';
 import './landing.css';
+import  { useContext } from 'react';
+import cartcontext from '../../context/cart/cartcontext';
 
 function Landing({ products }) {
+  const { addToCart } = useContext(cartcontext);
   return (
     <div>
       {/* Hero Section */}
@@ -43,8 +46,11 @@ function Landing({ products }) {
           {products.slice(0, 4).map((product) => (
             <div className="col-4" key={product.id}>
               <img src={product.image} alt={`Product ${product.id}`} />
-              <h4>{product.name}</h4>
-              <p>{product.price}</p>
+              <h4>{product.title}</h4>
+              <div className='bottom'>
+                <p>${product.price}.00</p>
+            <button onClick={addToCart} className='addcart'><img src="cart.png" width="20px" height="20px" alt="cart" /></button>
+</div>
             </div>
           ))}
         </div>
@@ -55,8 +61,11 @@ function Landing({ products }) {
           {products.slice(4, 14).map((product) => (
             <div className="col-4" key={product.id}>
               <img src={product.image} alt={`Product ${product.id}`} />
-              <h4>{product.name}</h4>
-              <p>{product.price}</p>
+              <h4>{product.title}</h4>
+             <div className='bottom'>
+                <p>${product.price}.00</p>
+            <button onClick={addToCart} className='addcart'><img src="cart.png" width="20px" height="20px" alt="cart" className='addcart'/></button>
+</div>
             </div>
           ))}
         </div>

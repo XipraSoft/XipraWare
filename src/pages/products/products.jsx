@@ -1,21 +1,33 @@
 import React, { useState } from "react";
 import "./products.css";
+import  { useContext } from 'react';
+import cartcontext from '../../context/cart/cartcontext';
 
 const Product = ({ products }) => {
   const [sortOption, setSortOption] = useState("Default Sort");
-
-  // Handle sort selection
+ const { addToCart } = useContext(cartcontext);
   const handleSortChange = (e) => {
     setSortOption(e.target.value);
   };
 
-  // Sort products based on selected option
-  const sortedProducts = [...products].sort((a, b) => {
-    if (sortOption === "Sort By Price") {
-      return a.price - b.price; // ascending
+  // Apply sorting logic
+  const sortedProducts = (() => {
+    let clonedProducts = [...products];
+
+    switch (sortOption) {
+      case "Sort By Price":
+        return clonedProducts.sort((a, b) => a.price - b.price);
+
+      case "Sort By Rating":
+        return clonedProducts.sort((a, b) => b.price - a.price); // reverse of Sort By Price
+
+      case "Sort By Popularity":
+        return clonedProducts.reverse();
+
+      default:
+        return clonedProducts;
     }
-    return 0; // Default (no sorting)
-  });
+  })();
 
   return (
     <div className="small-container">
@@ -49,7 +61,10 @@ const Product = ({ products }) => {
                   />
                 ))}
               </div>
-              <p>${product.price}.00</p>
+               <div className='bottom'>
+                <p>${product.price}.00</p>
+            <button onClick={addToCart} className='addcart'><img src="cart.png" width="20px" height="20px" alt="cart" /></button>
+</div>
             </div>
           ))}
         </div>
