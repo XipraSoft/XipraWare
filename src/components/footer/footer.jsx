@@ -17,7 +17,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="footer-col-2">
-                    <img src="logo-white.png"/>
+                    <img src="logo.png"/>
                     <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.
                     </p>
                 </div>
