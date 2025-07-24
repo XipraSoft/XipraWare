@@ -49,7 +49,10 @@ function Landing({ products }) {
               <h4>{product.title}</h4>
               <div className='bottom'>
                 <p>${product.price}.00</p>
-            <button onClick={addToCart} className='addcart'><img src="cart.png" width="20px" height="20px" alt="cart" /></button>
+            <button onClick={() => addToCart(product.id)} className="addcart">
+  <img src="cart.png" width="20px" height="20px" alt="cart" />
+</button>
+
 </div>
             </div>
           ))}
@@ -64,7 +67,9 @@ function Landing({ products }) {
               <h4>{product.title}</h4>
              <div className='bottom'>
                 <p>${product.price}.00</p>
-            <button onClick={addToCart} className='addcart'><img src="cart.png" width="20px" height="20px" alt="cart" className='addcart'/></button>
+            <button onClick={() => addToCart(product.id)} className="addcart">
+  <img src="cart.png" width="20px" height="20px" alt="cart" />
+</button>
 </div>
             </div>
           ))}

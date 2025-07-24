@@ -3,14 +3,27 @@ import React, { useState } from 'react';
 import cartcontext from './cartcontext';
 
 const Cartstate = ({ children }) => {
-  const [cartCount, setCartCount] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
 
-  const addToCart = () => {
-    setCartCount(prev => prev + 1);
+  const addToCart = (productId) => {
+    setCartItems(prevItems => {
+      const existingItem = prevItems.find(item => item.id === productId);
+      if (existingItem) {
+        return prevItems.map(item =>
+          item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      } else {
+        return [...prevItems, { id: productId, quantity: 1 }];
+      }
+    });
+  };
+
+  const removeFromCart = (productId) => {
+    setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
   };
 
   return (
-    <cartcontext.Provider value={{ cartCount, addToCart }}>
+    <cartcontext.Provider value={{ cartItems, addToCart, removeFromCart }}>
       {children}
     </cartcontext.Provider>
   );

@@ -5,8 +5,12 @@ import cartcontext from '../../context/cart/cartcontext';
 import { Link } from 'react-router-dom';
 
 
+
 const Navbar = () => {
-  const { cartCount } = useContext(cartcontext);
+  
+  const { cartItems } = useContext(cartcontext);
+const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
 
   return (
     <div className="navbar">
@@ -25,7 +29,7 @@ const Navbar = () => {
       </nav>
 
       <a href="/cart" className="cart-link">
-        <img src="cart.png" width="30px" height="30px" alt="cart" />
+        <Link to="cart"><img src="cart.png" width="30px" height="30px" alt="cart" /></Link>
         <span className="cart-count">{cartCount}</span>
       </a>
 
