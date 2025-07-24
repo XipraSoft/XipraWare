@@ -2,6 +2,8 @@
 import React, { useContext } from 'react';
 import './navbar.css'; // ✅ correct path relative to navbar.jsx
 import cartcontext from '../../context/cart/cartcontext';
+import { Link } from 'react-router-dom';
+
 
 const Navbar = () => {
   const { cartCount } = useContext(cartcontext);
@@ -14,11 +16,11 @@ const Navbar = () => {
 
       <nav>
         <ul id="MenuItems">
-          <li><a href="/">Home</a></li>
-          <li><a href="/products">Products</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="/account">Account</a></li>
+          <Link to="/"><li><a href="/">Home</a></li></Link>
+          <Link to="/products"><li><a href="/products">Products</a></li></Link>
+          <Link to="/about"><li><a href="/about">About</a></li></Link>
+          <Link to="/contact"><li><a href="/contact">Contact</a></li></Link>
+          <Link to="/account"><li><a href="/account">Account</a></li></Link>
         </ul>
       </nav>
 
