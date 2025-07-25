@@ -1,19 +1,27 @@
-// src/components/navbar/navbar.jsx
-import React, { useContext } from 'react';
-import './navbar.css'; // ✅ correct path relative to navbar.jsx
+import React, { useContext, useEffect, useState } from 'react';
+import './navbar.css';
 import cartcontext from '../../context/cart/cartcontext';
 import { Link } from 'react-router-dom';
 
-
-
 const Navbar = () => {
-  
   const { cartItems } = useContext(cartcontext);
-const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50;
+      setScrolled(isScrolled);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="navbar">
+    <div className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="logo">
         <a href="/"><img src="logo.png" alt="logo" width="125px" /></a>
       </div>
@@ -29,7 +37,7 @@ const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
       </nav>
 
       <a href="/cart" className="cart-link">
-        <Link to="cart"><img src="cart.png" width="30px" height="30px" alt="cart" /></Link>
+        <Link to="/cart"><img src="cart.png" width="30px" height="30px" alt="cart" /></Link>
         <span className="cart-count">{cartCount}</span>
       </a>
 

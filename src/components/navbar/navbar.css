@@ -142,3 +142,10 @@ p {
   padding: 20px 50px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
+.navbar.scrolled {
+  background: rgb(255, 82, 59);
+  transition: background 0.3s ease-in-out;
+  a{
+    color: white;
+  }
+}
