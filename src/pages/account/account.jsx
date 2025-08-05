@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './account.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+const API_URL = 'http://localhost:5000/api/auth';
 
 const Account = () => {
   const [loginData, setLoginData] = useState({ username: '', password: '' });
   const [registerData, setRegisterData] = useState({ username: '', email: '', password: '' });
+
+  const navigate = useNavigate(); // ✅ useNavigate hook
 
   useEffect(() => {
     const loginForm = document.getElementById("LoginForm");
@@ -36,19 +42,36 @@ const Account = () => {
     return true;
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
+
     if (validateForm(loginData)) {
-      alert('Login successful!');
-      // Proceed with login logic
+      try {
+        const res = await axios.post(`${API_URL}/login`, {
+          email: loginData.username, // Treating username input as email
+          password: loginData.password,
+        });
+
+        alert(res.data.message);
+        localStorage.setItem('token', res.data.token);
+        navigate('/'); // ✅ Redirect to landing page
+      } catch (err) {
+        alert(err.response?.data?.message || 'Login failed');
+      }
     }
   };
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
+
     if (validateForm(registerData, true)) {
-      alert('Registration successful!');
-      // Proceed with registration logic
+      try {
+        const res = await axios.post(`${API_URL}/signup`, registerData);
+        alert(res.data.message);
+        window.login(); // ✅ Switch to login form after successful registration
+      } catch (err) {
+        alert(err.response?.data?.message || 'Registration failed');
+      }
     }
   };
 
@@ -70,7 +93,7 @@ const Account = () => {
               <form id="LoginForm" onSubmit={handleLoginSubmit}>
                 <input
                   type="text"
-                  placeholder="Username"
+                  placeholder="Email"
                   value={loginData.username}
                   onChange={(e) => setLoginData({ ...loginData, username: e.target.value })}
                 />
