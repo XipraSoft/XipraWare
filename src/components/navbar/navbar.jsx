@@ -1,52 +1,70 @@
-import React, { useContext, useEffect, useState } from 'react';
-import './navbar.css';
+// src/components/navbar/navbar.jsx
+import React, { useContext, useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/auth/AuthContext';
 import cartcontext from '../../context/cart/cartcontext';
-import { Link } from 'react-router-dom';
+import './navbar.css';
 
 const Navbar = () => {
   const { cartItems } = useContext(cartcontext);
-  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-
+  const { user, logoutUser, isAuthenticated } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const handleLogout = () => {
+    logoutUser();
+    alert('Logged out!');
+    navigate('/account');
+  };
+
+  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  // Handle scroll color change
   useEffect(() => {
-    const handleScroll = () => {
+    const onScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
     <div className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="logo">
-        <Link to="/"><img src="/logo.png" alt="logo" width="125px" /></Link>
+        <Link to="/"><img src="/logo.png" alt="Logo" /></Link>
       </div>
 
       <nav className={menuOpen ? 'open' : ''}>
-        <ul id="MenuItems">
-          <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
-          <li><Link to="/products" onClick={() => setMenuOpen(false)}>Products</Link></li>
-          <li><Link to="/about" onClick={() => setMenuOpen(false)}>About</Link></li>
-          <li><Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link></li>
-          <li><Link to="/account" onClick={() => setMenuOpen(false)}>Account</Link></li>
-        </ul>
+        <ul id="MenuItems" className="center-menu">
+  <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
+  <li><Link to="/products" onClick={() => setMenuOpen(false)}>Products</Link></li>
+  <li><Link to="/about" onClick={() => setMenuOpen(false)}>About</Link></li>
+  <li><Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link></li>
+</ul>
+
       </nav>
 
       <div className="right-section">
+        {isAuthenticated ? (
+          <>
+            <span className="navbar-user">Hi, {user?.name}</span>
+            <button className="logout-btn" onClick={handleLogout}>Logout</button>
+          </>
+        ) : (
+          <Link to="/account" className="navbar-user">Account</Link>
+        )}
+
         <Link to="/cart" className="cart-link">
-          <img src="/cart.png" width="30px" height="30px" alt="cart" />
+          <img src="/cart.png" alt="Cart" />
           <span className="cart-count">{cartCount}</span>
         </Link>
 
         <img
           src="/menu.png"
+          alt="Menu"
           className="menu-icon"
-          alt="menu"
-          onClick={toggleMenu}
+          onClick={() => setMenuOpen(!menuOpen)}
         />
       </div>
     </div>
