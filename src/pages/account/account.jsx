@@ -97,7 +97,7 @@ const Account = () => {
                   placeholder="Password"
                 />
                 <button type="submit" className="btn">Login</button>
-                <a href="#">Forgot Password?</a>
+      <a href="/forgot-password">Forgot Password?</a>
               </form>
 
               {/* Register Form */}

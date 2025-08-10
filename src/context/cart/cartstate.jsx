@@ -20,9 +20,13 @@ const Cartstate = ({ children }) => {
   const removeFromCart = (productId) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
   };
+  const clearCart = () => {
+  setCartItems([]);
+};
+
 
   return (
-    <cartcontext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <cartcontext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart }}>
       {children}
     </cartcontext.Provider>
   );

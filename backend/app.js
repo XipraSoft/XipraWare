@@ -13,6 +13,9 @@ app.use(express.json());
 // Routes (we will add later)
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/protected', require('./routes/protected'));
+// Stripe route
+app.use('/api/stripe', require('./routes/stripe'));
+
 
 
 // Test DB connection & sync models

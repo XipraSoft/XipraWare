@@ -14,13 +14,15 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logoutUser();
+       clearCart();
     alert('Logged out!');
     navigate('/account');
+  
+    
   };
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-  // Handle scroll color change
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);

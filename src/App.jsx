@@ -1,18 +1,18 @@
 import Navbar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
 import { products } from './helpers.js/cardsdata';
-import Cart from './pages/cart/cart';
 import Cartstate from './context/cart/cartstate'; 
 import { Routes, Route } from 'react-router-dom';
 import Landing from './pages/landing/landing';
 import Account from './pages/account/account';
+import CartPage from './pages/Cart/cart';
 import Contact from './pages/contact/Contact';
 import About from './pages/about/about';
 import Product from  './pages/products/products';
-import CartPage from './pages/cart/cart';
 import Scrolltotop from "./components/scrolltotop/Scrolltotop";
 import './App.css'
 import ProtectedRoute from './helpers.js/ProtectedRoute.jsx';
+import ForgotPassword from './pages/ForgotPassword/ForgotPassword.jsx';
 
 function App() {
   return (
@@ -39,6 +39,7 @@ function App() {
           </ProtectedRoute>
         }/>
         <Route path="/account" element={<Account />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/about" element={<About />} />
           <Route
         path="/cart"
