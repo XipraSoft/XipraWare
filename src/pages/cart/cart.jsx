@@ -4,7 +4,6 @@ import cartcontext from '../../context/cart/cartcontext';
 import { products } from '../../helpers.js/cardsdata';
 import './cart.css';
 
-// Load Stripe with publishable key from environment variable
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const Cart = () => {
