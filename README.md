@@ -1,12 +1,33 @@
-# React + Vite
+🛒 XipraWare – Full-Stack E-Commerce Platform
+XipraWare is a modern e-commerce web application built with a React frontend and an Express + Node.js backend. It delivers a fast, secure, and smooth shopping experience with authentication, protected routes, and Stripe payment integration.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Overview
+XipraWare allows users to browse products, manage their shopping cart, securely log in, and complete payments online. The frontend leverages Context API for managing global states like cart and authentication across multiple pages, while the backend ensures robust data handling and payment processing.
 
-Currently, two official plugins are available:
+✨ Features
+Frontend (React):
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Responsive and modern UI design
 
-## Expanding the ESLint configuration
+Global State Management: Cart and login state handled via Context API
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Conditional rendering on the Products page for dynamic user experiences
+
+Protected routes to secure pages like checkout and account
+
+Multi-page navigation with seamless state persistence
+
+Backend (Express + Node.js):
+
+Authentication: Secure login and registration system (JWT-based)
+
+Stripe Payment Integration: Real-time payment processing
+
+RESTful API for products, cart, and user management
+
+Middleware for route protection and request validation
+
+🛠 Tech Stack
+Frontend: React, Context API, JavaScript (ES6+), CSS/SCSS
+Backend: Node.js, Express, JWT, bcrypt, Stripe API, dotenv, CORS
+Database: MySQL
