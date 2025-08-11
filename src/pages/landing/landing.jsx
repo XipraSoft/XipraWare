@@ -2,6 +2,7 @@ import React from 'react';
 import './landing.css';
 import  { useContext } from 'react';
 import cartcontext from '../../context/cart/cartcontext';
+import { Link } from 'react-router-dom';
 
 function Landing({ products }) {
   const { addToCart } = useContext(cartcontext);
@@ -17,9 +18,9 @@ function Landing({ products }) {
             Success isn't always about greatness. It's about consistency. <br />
             Consistent hard work gains success. Greatness will come.
           </p>
-          <a href="#" className="btn">
+          <Link to="/products">  <a href="#" className="btn">
             Explore Now &#8594;
-          </a>
+          </a></Link>
         </div>
         <div className="col-2">
           <img src="image1.png" alt="Workout" />
@@ -91,9 +92,9 @@ function Landing({ products }) {
                 with adjustable brightness, so everything is clear as can be.
               </small>
               <br />
-              <a href="products.html" className="btn">
+             <Link to="/products"> <a href="products.html" className="btn">
                 Buy Now &#8594;
-              </a>
+              </a></Link>
             </div>
           </div>
         </div>
