@@ -78,6 +78,7 @@ function Landing({ products }) {
       </div>
 
       {/* Offer */}
+     {/* Exclusive Offer Section*/}
       <div className="offer">
         <div className="small-container">
           <div className="row">
