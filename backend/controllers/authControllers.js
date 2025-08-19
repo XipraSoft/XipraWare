@@ -1,4 +1,3 @@
-// authController.js
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
@@ -9,9 +8,8 @@ exports.signup = async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
-    console.log(req.body); // Log incoming data
+    console.log(req.body); 
 
-    // Check if email exists
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       return res.status(400).json({ message: 'Email already exists' });
@@ -34,27 +32,22 @@ exports.signup = async (req, res) => {
   }
 };
 
-// Login functionality
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Check if user exists
     const user = await User.findOne({ where: { email } });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Compare passwords
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid password' });
     }
 
-    // Generate JWT token
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
-    // Return success message and token
     res.json({
       message: 'Login successful',
       token: token,
@@ -69,7 +62,6 @@ exports.login = async (req, res) => {
   }
 };
 
-// Forgot Password (OTP Generation)
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
 
@@ -77,16 +69,13 @@ exports.forgotPassword = async (req, res) => {
     const user = await User.findOne({ where: { email } });
     if (!user) return res.status(404).json({ message: 'User not found' });
 
-    // Generate 6-digit OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const expiry = new Date(Date.now() + 10 * 60 * 1000); // 10 min expiry
+    const expiry = new Date(Date.now() + 10 * 60 * 1000); 
 
-    // Save OTP and expiry in user record
     user.otp = otp;
     user.otpExpiry = expiry;
     await user.save();
 
-    // Send OTP to user's email
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -109,7 +98,6 @@ exports.forgotPassword = async (req, res) => {
   }
 };
 
-// Reset Password
 exports.resetPassword = async (req, res) => {
   const { email, otp, newPassword } = req.body;
 
@@ -117,16 +105,14 @@ exports.resetPassword = async (req, res) => {
     const user = await User.findOne({ where: { email } });
     if (!user) return res.status(404).json({ message: 'User not found' });
 
-    // Check if OTP is valid and not expired
     if (user.otp !== otp || new Date() > user.otpExpiry) {
       return res.status(400).json({ message: 'Invalid or expired OTP' });
     }
 
-    // Reset password
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     user.password = hashedPassword;
-    user.otp = null; // Clear OTP after use
-    user.otpExpiry = null; // Clear OTP expiry
+    user.otp = null; 
+    user.otpExpiry = null; 
     await user.save();
 
     res.json({ message: 'Password reset successful' });
@@ -136,11 +122,10 @@ exports.resetPassword = async (req, res) => {
   }
 };
 
-// Get User Profile
 exports.getUserProfile = async (req, res) => {
   try {
     const user = await User.findByPk(req.user.id, {
-      attributes: { exclude: ['password'] }, // Exclude password
+      attributes: { exclude: ['password'] }, 
     });
     if (!user) return res.status(404).json({ message: 'User not found' });
 

@@ -3,7 +3,7 @@ const router = express.Router();
 const Stripe = require('stripe');
 
 
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY); // keep this in .env
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY); 
 
 router.post('/create-checkout-session', async (req, res) => {
   const { cartItems } = req.body;
@@ -15,7 +15,7 @@ router.post('/create-checkout-session', async (req, res) => {
         product_data: {
           name: item.title,
         },
-        unit_amount: item.price * 100, // Stripe needs amount in cents
+        unit_amount: item.price * 100, 
       },
       quantity: item.quantity,
     }));
