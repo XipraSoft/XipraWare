@@ -61,7 +61,7 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
-
+// Forgot Password
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
 
