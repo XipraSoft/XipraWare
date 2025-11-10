@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const { sequelize } = require('./models'); 
+// Import Sequelize instance
 
 dotenv.config();
 const app = express();
