@@ -69,7 +69,7 @@ function Landing({ products }) {
              <div className='bottom'>
                 <p>${product.price}.00</p>
             <button onClick={() => addToCart(product.id)} className="addcart">
-  <img src="cart.png" width="20px" height="20px" alt="cart" />
+<img src="cart.png" alt="cart" />
 </button>
 </div>
             </div>
