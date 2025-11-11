@@ -253,3 +253,9 @@ small {
   object-fit: contain;
   display: block;
 }
+.addcart img {
+  width: 20px !important;
+  height: 20px !important;
+  object-fit: contain;
+  flex-shrink: 0;
+}
