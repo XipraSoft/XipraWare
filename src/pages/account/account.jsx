@@ -35,7 +35,7 @@ const Account = () => {
       alert('Login failed: ' + err.message);
     }
   };
-
+//  randle Register
   // Handle Register
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
