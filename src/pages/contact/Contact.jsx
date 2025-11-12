@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../account/account.css'; 
 
-
+// Contact.jsx
 const Contact = () => {
   const [formData, setFormData] = useState({
     fullName: '',

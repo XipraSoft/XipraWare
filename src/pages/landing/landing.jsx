@@ -3,7 +3,7 @@ import './landing.css';
 import  { useContext } from 'react';
 import cartcontext from '../../context/cart/cartcontext';
 import { Link } from 'react-router-dom';
-
+//landing.jsx
 function Landing({ products }) {
   const { addToCart } = useContext(cartcontext);
   return (
