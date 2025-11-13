@@ -4,6 +4,7 @@ import  { useContext } from 'react';
 import cartcontext from '../../context/cart/cartcontext';
 import { Link } from 'react-router-dom';
 //landing.jsx
+//jfsfiwhfiuw
 function Landing({ products }) {
   const { addToCart } = useContext(cartcontext);
   return (

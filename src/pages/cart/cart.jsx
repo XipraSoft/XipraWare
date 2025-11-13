@@ -8,7 +8,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const Cart = () => {
   const { cartItems, removeFromCart } = useContext(cartcontext);
-
+//huuyyuyuyuu
   const getProduct = (id) => products.find((p) => p.id === id);
   const getSubtotal = (price, quantity) => price * quantity;
 

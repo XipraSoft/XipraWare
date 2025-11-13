@@ -9,7 +9,7 @@ const Contact = () => {
     phone: '',
     message: ''
   });
-
+//fttyftyfytfytfyftyfytfyfty
   const validateForm = () => {
     const { fullName, email, phone, message } = formData;
     if (!fullName || !email || !phone || !message) {
