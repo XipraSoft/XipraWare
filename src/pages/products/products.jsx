@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./products.css";
 import  { useContext } from 'react';
 import cartcontext from '../../context/cart/cartcontext';
+//products.jsx
 
 const Product = ({ products }) => {
   const [sortOption, setSortOption] = useState("Default Sort");

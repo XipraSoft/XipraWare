@@ -14,6 +14,7 @@ import './App.css'
 import ProtectedRoute from './helpers.js/ProtectedRoute.jsx';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword.jsx';
 
+// App.jsx
 function App() {
   return (
    <div style={{ paddingTop: '80px' }}>
